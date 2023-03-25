@@ -1,22 +1,27 @@
-﻿Console.Write("Введите количество элементов: ");
-int size = Convert.ToInt32(Console.ReadLine());
-string[] arrayOriginal = new string[size];
-for (int i = 0; i < size; i++)
+﻿int Input(string msg)
 {
-    Console.Write($"Введите {i + 1}-ое значение: ");
-    arrayOriginal[i] = Console.ReadLine();
+    Console.Write(msg + " ");
+    return Convert.ToInt32(Console.ReadLine());
 }
 
-string[] arrayFinal = new string[arrayOriginal.Length];
+void FillArray(string[] array)
+{
+int length = array.Length;
+    for (int i = 0; i < array.Length; i++)
+    {
+        Console.Write($"Введите {i + 1}-ое значение: ");
+        array[i] = Console.ReadLine();
+    }
+}
 
-void GetStrings(string[] array)
+void GetStrings(string[] array1, string[] array2)
 {
     int count = 0;
-    for (int i = 0; i < arrayOriginal.Length; i++)
+    for (int i = 0; i < array1.Length; i++)
     {
-        if (arrayOriginal[i].Length <= 3)
+        if (array1[i].Length <= 3)
         {
-            arrayFinal[count] = arrayOriginal[i];
+            array2[count] = array1[i];
             count++;
         }
     }
@@ -30,9 +35,13 @@ void PrintArray(string[] array)
     }
 }
 
+int size = Input("Введите количество элементов: ");
+string[] arrayOriginal = new string[size];
+string[] arrayFinal = new string[arrayOriginal.Length];
+FillArray(arrayOriginal);
 Console.WriteLine("Исходный массив:");
 PrintArray(arrayOriginal);
 Console.WriteLine();
-GetStrings(arrayOriginal);
+GetStrings(arrayOriginal, arrayFinal);
 Console.WriteLine("Итоговый массив:");
 PrintArray(arrayFinal);
